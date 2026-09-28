@@ -33,7 +33,7 @@ export default function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="logo" onClick={() => setMenuOpen(false)}>
-          <Image src="/logo.jpeg" alt="Lifemed Pharma" width={240} height={120} className="logo-img" priority />
+          <Image src="/logo.png" alt="AuraMed Pharma" width={240} height={120} className="logo-img" priority />
         </Link>
 
         <nav className={`main-nav ${menuOpen ? 'open' : ''}`}>

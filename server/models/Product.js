@@ -14,7 +14,7 @@ const ProductSchema = new mongoose.Schema({
   ingredients: [{ type: String }],
   usage: { type: String },
   sideEffects: { type: String },
-  manufacturer: { type: String, default: 'Lifemed Pharma' },
+  manufacturer: { type: String, default: 'AuraMed Pharma' },
   isFeatured: { type: Boolean, default: false },
   isActive: { type: Boolean, default: true },
   ratings: { type: Number, default: 4.5 },

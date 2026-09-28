@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Product = require('./models/Product');
 const Blog = require('./models/Blog');
-require('dotenv').config();
+require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+const { connectDatabase } = require('./config/database');
 
 if (!process.env.MONGODB_URI) {
   throw new Error('MONGODB_URI environment variable is required');
@@ -11,8 +12,8 @@ const MONGO_URI = process.env.MONGODB_URI;
 
 const products = [
   {
-    name: 'LifeVit Multivitamin Tablets',
-    slug: 'lifevit-multivitamin-tablets',
+    name: 'AuraVit Multivitamin Tablets',
+    slug: 'auravit-multivitamin-tablets',
     shortDescription: 'Complete daily multivitamin with 23 essential nutrients for optimal health',
     description: 'LifeVit Multivitamin is a scientifically formulated blend of 23 essential vitamins and minerals designed to support overall health and wellbeing. Each tablet provides 100% of the daily recommended intake of key nutrients including Vitamin A, B-complex, C, D, E, and essential minerals.',
     price: 850,
@@ -22,10 +23,10 @@ const products = [
     isFeatured: true,
     ratings: 4.8,
     reviewCount: 124,
-    sku: 'LMP-VIT-001',
+    sku: 'AMP-VIT-001',
     ingredients: ['Vitamin A', 'Vitamin C', 'Vitamin D3', 'Vitamin E', 'B-Complex', 'Zinc', 'Iron', 'Calcium'],
     usage: 'Take 1 tablet daily after meals with water',
-    manufacturer: 'Lifemed Pharma',
+    manufacturer: 'AuraMed Pharma',
     tags: ['vitamins', 'multivitamin', 'supplements', 'daily health']
   },
   {
@@ -40,7 +41,7 @@ const products = [
     isFeatured: true,
     ratings: 4.6,
     reviewCount: 89,
-    sku: 'LMP-CRM-001',
+    sku: 'AMP-CRM-001',
     ingredients: ['Diclofenac Sodium 1%', 'Menthol 5%', 'Methyl Salicylate', 'Linseed Oil'],
     usage: 'Apply thin layer to affected area 3-4 times daily. Massage gently.',
     tags: ['pain relief', 'gel', 'muscle pain', 'joint pain', 'topical']
@@ -57,7 +58,7 @@ const products = [
     isFeatured: true,
     ratings: 4.5,
     reviewCount: 211,
-    sku: 'LMP-SYR-001',
+    sku: 'AMP-SYR-001',
     ingredients: ['Dextromethorphan HBr 10mg', 'Guaifenesin 100mg', 'Honey Extract', 'Menthol'],
     usage: 'Adults: 10ml every 6 hours. Children (6-12): 5ml every 6 hours. Do not exceed 4 doses/day.',
     tags: ['cough', 'syrup', 'expectorant', 'cold', 'flu']
@@ -74,7 +75,7 @@ const products = [
     isFeatured: true,
     ratings: 4.9,
     reviewCount: 178,
-    sku: 'LMP-SRM-001',
+    sku: 'AMP-SRM-001',
     ingredients: ['L-Ascorbic Acid 20%', 'Hyaluronic Acid', 'Vitamin E', 'Ferulic Acid', 'Niacinamide'],
     usage: 'Apply 3-4 drops to cleansed face every morning. Follow with sunscreen.',
     tags: ['serum', 'vitamin c', 'brightening', 'anti-aging', 'skincare']
@@ -91,7 +92,7 @@ const products = [
     isFeatured: false,
     ratings: 4.7,
     reviewCount: 95,
-    sku: 'LMP-SUP-002',
+    sku: 'AMP-SUP-002',
     ingredients: ['Fish Oil 1200mg', 'EPA 720mg', 'DHA 480mg', 'Vitamin E (preservative)'],
     usage: 'Take 1-2 capsules daily with meals',
     tags: ['omega-3', 'fish oil', 'heart health', 'supplements']
@@ -108,7 +109,7 @@ const products = [
     isFeatured: false,
     ratings: 4.6,
     reviewCount: 143,
-    sku: 'LMP-CRM-002',
+    sku: 'AMP-CRM-002',
     ingredients: ['Ceramides', 'Shea Butter', 'Hyaluronic Acid', 'Glycerin', 'Niacinamide'],
     usage: 'Apply to face and body morning and evening on cleansed skin',
     tags: ['moisturizer', 'cream', 'hydration', 'sensitive skin', 'ceramides']
@@ -125,7 +126,7 @@ const products = [
     isFeatured: false,
     ratings: 4.4,
     reviewCount: 67,
-    sku: 'LMP-SYR-002',
+    sku: 'AMP-SYR-002',
     ingredients: ['Aluminum Hydroxide 200mg/5ml', 'Magnesium Hydroxide 200mg/5ml', 'Simethicone 25mg/5ml'],
     usage: 'Adults: 10-20ml after meals and at bedtime. Shake well before use.',
     tags: ['antacid', 'heartburn', 'acidity', 'gastric', 'syrup']
@@ -142,7 +143,7 @@ const products = [
     isFeatured: false,
     ratings: 4.8,
     reviewCount: 112,
-    sku: 'LMP-SRM-002',
+    sku: 'AMP-SRM-002',
     ingredients: ['Retinol 0.3%', 'Peptide Complex', 'Niacinamide 5%', 'Hyaluronic Acid', 'Squalane'],
     usage: 'Apply pea-sized amount at night to cleansed skin. Always use SPF in the morning.',
     tags: ['retinol', 'anti-aging', 'serum', 'wrinkles', 'skincare']
@@ -256,21 +257,16 @@ const blogs = [
 
 async function seedDatabase() {
   try {
-    await mongoose.connect(MONGO_URI);
+    await connectDatabase();
     console.log('Connected to MongoDB');
 
-    // Clear existing data
-    await Product.deleteMany({});
-    await Blog.deleteMany({});
-    console.log('Cleared existing data');
-
-    // Insert products
-    await Product.insertMany(products);
-    console.log(`Inserted ${products.length} products`);
-
-    // Insert blogs
-    await Blog.insertMany(blogs);
-    console.log(`Inserted ${blogs.length} blog posts`);
+    // Demo content is opt-in and never replaces existing catalog records.
+    for (const product of products) {
+      await Product.updateOne({ slug: product.slug }, { $setOnInsert: product }, { upsert: true });
+    }
+    for (const blog of blogs) {
+      await Blog.updateOne({ slug: blog.slug }, { $setOnInsert: { ...blog, isPublished: false } }, { upsert: true });
+    }
 
     console.log('✅ Database seeded successfully!');
     process.exit(0);

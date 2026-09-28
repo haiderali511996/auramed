@@ -105,7 +105,7 @@ export default function ProductDetailClient({ id }) {
           </div>
 
           <div className="detail-meta">
-            <span>Manufacturer: {product.manufacturer || 'Lifemed Pharma'}</span>
+            <span>Manufacturer: {product.manufacturer || 'AuraMed Pharma'}</span>
             <span>{product.stock > 0 ? `In Stock (${product.stock} available)` : 'Out of Stock'}</span>
             {product.sku && <span>SKU: {product.sku}</span>}
           </div>

@@ -1,7 +1,7 @@
 {
-  "name": "lifemed-server",
+  "name": "auramed-server",
   "version": "1.0.0",
-  "description": "Lifemed Pharma Backend API",
+  "description": "AuraMed Pharma Backend API",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

@@ -49,7 +49,7 @@ const OrderSchema = new mongoose.Schema({
 // Auto-generate order number
 OrderSchema.pre('save', async function (next) {
   if (!this.orderNumber) {
-    this.orderNumber = 'LMP-' + Date.now();
+    this.orderNumber = 'AMP-' + require('crypto').randomUUID().toUpperCase();
   }
   next();
 });

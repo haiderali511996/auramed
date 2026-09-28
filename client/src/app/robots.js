@@ -1,3 +1,4 @@
+import { brand } from '@/lib/brand';
 export default function robots() {
   return {
     rules: [
@@ -7,7 +8,7 @@ export default function robots() {
         disallow: ['/admin/', '/checkout/', '/order-success/', '/cart/'],
       },
     ],
-    sitemap: 'https://lifemedpharmaceutical.com/sitemap.xml',
-    host: 'https://lifemedpharmaceutical.com',
+    sitemap: `${brand.siteUrl}/sitemap.xml`,
+    host: brand.siteUrl,
   };
 }

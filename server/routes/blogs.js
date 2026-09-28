@@ -34,7 +34,7 @@ router.get('/:slug', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', require('../middleware/auth'), require('../middleware/adminOnly'), async (req, res) => {
   try {
     const blog = new Blog(req.body);
     await blog.save();

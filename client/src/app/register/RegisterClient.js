@@ -46,7 +46,7 @@ export default function Register() {
   return (
     <div className="form-card">
       <h1>Create Account</h1>
-      <p className="form-subtitle">Join Lifemed Pharma for a better shopping experience.</p>
+      <p className="form-subtitle">Join AuraMed Pharma for a better shopping experience.</p>
 
       {error && <div className="form-error">{error}</div>}
 

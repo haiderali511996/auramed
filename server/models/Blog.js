@@ -4,7 +4,7 @@ const BlogSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   excerpt: { type: String },
   content: { type: String, required: true },
-  author: { type: String, default: 'Lifemed Pharma Team' },
+  author: { type: String, default: 'AuraMed Pharma Team' },
   category: { type: String, required: true },
   tags: [{ type: String }],
   image: { type: String },

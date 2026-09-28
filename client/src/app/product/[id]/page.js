@@ -1,3 +1,4 @@
+import { brand } from '@/lib/brand';
 import ProductDetailClient from './ProductDetailClient';
 
 // Generate dynamic metadata per product for SEO
@@ -5,26 +6,26 @@ export async function generateMetadata({ params }) {
   const { id } = await params;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/api/products/${id}`,
+      `${process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/products/${id}`,
       { next: { revalidate: 3600 } }
     );
     if (res.ok) {
       const product = await res.json();
       return {
-        title: `${product.name} — Lifemed Pharma`,
+        title: `${product.name} — AuraMed Pharma`,
         description: product.shortDescription || product.description?.slice(0, 160),
         openGraph: {
-          title: `${product.name} | Lifemed Pharma`,
+          title: `${product.name} | AuraMed Pharma`,
           description: product.shortDescription || product.description?.slice(0, 160),
-          images: [{ url: product.images?.[0] || product.image || '/logo.jpeg' }],
-          url: `https://lifemedpharmaceutical.com/product/${id}`,
+          images: [{ url: product.images?.[0] || product.image || '/logo.png' }],
+          url: `${brand.siteUrl}/product/${id}`,
         },
       };
     }
   } catch {}
   return {
-    title: 'Product — Lifemed Pharma',
-    description: 'Quality pharmaceutical product from Lifemed Pharma Pakistan.',
+    title: 'Product — AuraMed Pharma',
+    description: 'Quality pharmaceutical product from AuraMed Pharma Pakistan.',
   };
 }
 

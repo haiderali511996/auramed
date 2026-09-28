@@ -7,15 +7,15 @@ export default function AboutClient() {
   const values = [
     { icon: <FiHeart />, title: 'Care First', text: 'Every product we sell is chosen with our customers\' wellbeing in mind.' },
     { icon: <FiShield />, title: 'Authenticity', text: 'We source only genuine, quality-checked medicines and health products.' },
-    { icon: <FiUsers />, title: 'Community', text: 'Serving families across Lahore and Pakistan with reliable healthcare access.' },
+    { icon: <FiUsers />, title: 'Community', text: 'Serving families across Pakistan with reliable healthcare access.' },
     { icon: <FiTrendingUp />, title: 'Growth', text: 'Continuously expanding our range to meet the needs of modern Pakistan.' },
   ];
 
   return (
     <div>
       <div className="page-header">
-        <h1>About Lifemed Pharma</h1>
-        <p>Pakistan&apos;s trusted online pharmacy, based in Lahore.</p>
+        <h1>About AuraMed Pharma</h1>
+        <p>Pakistan&apos;s trusted online pharmacy, focused on your wellbeing.</p>
       </div>
 
       <div className="container">
@@ -23,13 +23,13 @@ export default function AboutClient() {
           <div style={{ maxWidth: 760, margin: '0 auto' }}>
             <h2>Our Story</h2>
             <p>
-              Lifemed Pharma was founded with a simple mission: make quality healthcare products
+              AuraMed Pharma was founded with a simple mission: make quality healthcare products
               accessible to every household in Pakistan. From essential medicines to skincare and
               supplements, we work directly with trusted manufacturers to bring authentic products
               to your doorstep at fair prices.
             </p>
             <p>
-              Based in Lahore, our team combines pharmaceutical expertise with a customer-first
+              Our team combines pharmaceutical expertise with a customer-first
               approach — verifying every product, packaging with care, and delivering quickly across
               the city and beyond.
             </p>

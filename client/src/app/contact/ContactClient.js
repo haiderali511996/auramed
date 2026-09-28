@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { brand } from '@/lib/brand';
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import api from '@/lib/api';
@@ -41,9 +42,9 @@ export default function ContactClient() {
           <div>
             <h2>Get in Touch</h2>
             <ul className="footer-contact" style={{ color: 'var(--text)', marginTop: 20 }}>
-              <li><FiMapPin /> 182-D Khayban-e-Ameen, Lahore, Pakistan</li>
-              <li><FiPhone /> <a href="tel:+923205342942">+92 320 5342942</a></li>
-              <li><FiMail /> <a href="mailto:info@lifemedpharma.com">info@lifemedpharma.com</a></li>
+              {brand.address && <li><FiMapPin /> {brand.address}</li>}
+              {brand.phone && <li><FiPhone /> <a href={`tel:${brand.phone.replace(/[^+\d]/g, '')}`}>{brand.phone}</a></li>}
+              {brand.email && <li><FiMail /> <a href={`mailto:${brand.email}`}>{brand.email}</a></li>}
             </ul>
           </div>
 

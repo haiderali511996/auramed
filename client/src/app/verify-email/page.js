@@ -1,8 +1,8 @@
 import VerifyEmailClient from './VerifyEmailClient';
 
 export const metadata = {
-  title: 'Verify Email — Lifemed Pharma',
-  description: 'Verify your Lifemed Pharma account email address.',
+  title: 'Verify Email — AuraMed Pharma',
+  description: 'Verify your AuraMed Pharma account email address.',
 };
 
 export default function VerifyEmailPage() {

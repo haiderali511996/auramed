@@ -55,7 +55,7 @@ function LoginForm() {
   return (
     <div className="form-card">
       <h1>Welcome Back</h1>
-      <p className="form-subtitle">Log in to your Lifemed Pharma account.</p>
+      <p className="form-subtitle">Log in to your AuraMed Pharma account.</p>
 
       {error && <div className="form-error">{error}</div>}
 

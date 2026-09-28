@@ -1,5 +1,6 @@
+import { brand } from '@/lib/brand';
 export default async function sitemap() {
-  const baseUrl = 'https://lifemedpharmaceutical.com';
+  const baseUrl = brand.siteUrl;
 
   // Static pages
   const staticPages = [
@@ -13,7 +14,7 @@ export default async function sitemap() {
   // Dynamic product pages
   let productPages = [];
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/api/products?limit=200`);
+    const res = await fetch(`${process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/products?limit=200`);
     if (res.ok) {
       const data = await res.json();
       const products = Array.isArray(data?.products) ? data.products : Array.isArray(data) ? data : [];
@@ -29,7 +30,7 @@ export default async function sitemap() {
   // Dynamic blog pages
   let blogPages = [];
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/api/blogs?limit=100`);
+    const res = await fetch(`${process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/blogs?limit=100`);
     if (res.ok) {
       const data = await res.json();
       const blogs = Array.isArray(data?.blogs) ? data.blogs : Array.isArray(data) ? data : [];

@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const User = require('../models/User');
 const { sendVerificationEmail } = require('../utils/sendEmail');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'lifemed_secret_2024';
+const { secret: JWT_SECRET } = require('../config/auth');
 
 // POST /api/auth/register
 router.post('/register', async (req, res) => {

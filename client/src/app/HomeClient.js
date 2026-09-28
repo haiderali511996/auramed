@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FiTruck, FiShield, FiHeadphones } from 'react-icons/fi';
 import api from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
@@ -41,17 +42,18 @@ export default function HomeClient() {
       <section className="hero">
         <div className="container hero-inner">
           <div className="hero-content">
-            <h1>Better Health. Better Life.</h1>
+            <div className="hero-eyebrow">AuraMed Pharma</div>
+            <h1>Care for every tomorrow.</h1>
             <p>
               Pakistan&apos;s trusted online pharmacy. Genuine medicines, supplements and skincare,
-              delivered right to your door across Lahore and beyond.
+              delivered right to your door across Pakistan.
             </p>
             <div className="hero-actions">
               <Link href="/shop" className="btn btn-primary">Shop Now</Link>
               <Link href="/about" className="btn btn-outline">Learn More</Link>
             </div>
           </div>
-          <div className="hero-visual" aria-hidden="true">💊</div>
+          <div className="hero-visual"><Image src="/logo.png" alt="AuraMed Healthcare" width={695} height={359} className="hero-brand" priority /></div>
         </div>
       </section>
 
@@ -105,7 +107,7 @@ export default function HomeClient() {
           <div className="text-center">
             <FiTruck size={30} color="var(--primary)" />
             <h3 style={{ fontSize: '1rem', marginTop: 10 }}>Fast Delivery</h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Quick delivery across Lahore and Pakistan.</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Quick delivery across Pakistan.</p>
           </div>
           <div className="text-center">
             <FiShield size={30} color="var(--primary)" />

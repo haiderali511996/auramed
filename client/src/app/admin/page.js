@@ -165,8 +165,7 @@ export default function AdminPage() {
     const formData = new FormData();
     formData.append('image', file);
     const res = await api.post('/upload', formData);
-    const apiOrigin = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
-    return `${apiOrigin}${res.data.url}`;
+    return res.data.url;
   };
 
   const handleImageFileChange = async (e) => {

@@ -1,12 +1,13 @@
+import { brand } from '@/lib/brand';
 import ContactClient from './ContactClient';
 
 export const metadata = {
-  title: 'Contact Us — Lifemed Pharma Lahore',
-  description: 'Contact Lifemed Pharma. Call +92 320 5342942, email info@lifemedpharma.com or visit us at 182-D Khayban-e-Ameen, Lahore, Pakistan.',
+  title: 'Contact Us — AuraMed Pharma',
+  description: 'Get in touch with AuraMed Pharma for product enquiries and order support.',
   openGraph: {
-    title: 'Contact Lifemed Pharma',
-    description: 'Get in touch with Lifemed Pharma Lahore. Phone, email, WhatsApp and store location.',
-    url: 'https://lifemedpharmaceutical.com/contact',
+    title: 'Contact AuraMed Pharma',
+    description: 'Get in touch with AuraMed Pharma. Phone, email, WhatsApp and store location.',
+    url: `${brand.siteUrl}/contact`,
   },
 };
 

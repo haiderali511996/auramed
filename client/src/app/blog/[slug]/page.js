@@ -1,10 +1,11 @@
+import { brand } from '@/lib/brand';
 import BlogDetailClient from './BlogDetailClient';
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/api/blogs/${slug}`,
+      `${process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/blogs/${slug}`,
       { next: { revalidate: 3600 } }
     );
     if (res.ok) {
@@ -18,8 +19,8 @@ export async function generateMetadata({ params }) {
           type: 'article',
           title: blog.title,
           description: blog.excerpt,
-          images: [{ url: blog.image || '/logo.jpeg' }],
-          url: `https://lifemedpharmaceutical.com/blog/${slug}`,
+          images: [{ url: blog.image || '/logo.png' }],
+          url: `${brand.siteUrl}/blog/${slug}`,
           publishedTime: blog.createdAt,
           authors: [blog.author],
           tags: blog.tags,
@@ -28,14 +29,14 @@ export async function generateMetadata({ params }) {
           card: 'summary_large_image',
           title: blog.title,
           description: blog.excerpt,
-          images: [blog.image || '/logo.jpeg'],
+          images: [blog.image || '/logo.png'],
         },
       };
     }
   } catch {}
   return {
-    title: 'Health Article — Lifemed Pharma',
-    description: 'Expert health advice from Lifemed Pharma Pakistan.',
+    title: 'Health Article — AuraMed Pharma',
+    description: 'Expert health advice from AuraMed Pharma Pakistan.',
   };
 }
 
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }) {
 export async function generateStaticParams() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'}/api/blogs?limit=50`
+      `${process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/blogs?limit=50`
     );
     if (res.ok) {
       const data = await res.json();

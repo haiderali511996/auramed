@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+.DS_Store
+server/uploads/
+*.log
+haider511996_db_user
+b2fSTMUDn2GN2MUI
+mongodb+srv://haider511996_db_user:b2fSTMUDn2GN2MUI@cluster0.qw8kryh.mongodb.net/

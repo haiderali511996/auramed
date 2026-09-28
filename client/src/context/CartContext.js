@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, useCallback, useMemo } 
 import { toast } from 'react-toastify';
 
 const CartContext = createContext(null);
-const STORAGE_KEY = 'lifemed_cart';
+const STORAGE_KEY = 'auramed_cart';
 
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);

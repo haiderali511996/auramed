@@ -90,7 +90,7 @@ router.post('/', authMiddleware, async (req, res) => {
 
 // ─────────────────────────────────────────────
 // GET /api/orders — All orders (admin only)
-// Supports: ?page=1&limit=20&status=pending&search=LMP-
+// Supports: ?page=1&limit=20&status=pending&search=AMP-
 // ─────────────────────────────────────────────
 router.get('/', authMiddleware, async (req, res) => {
   try {

@@ -1,9 +1,11 @@
 :root {
-  --primary: #1a4fa8;
-  --primary-dark: #123a7e;
-  --primary-light: #e8f0fc;
-  --accent: #2d9d63;
-  --accent-dark: #21774b;
+  --font-inter: Arial, Helvetica, sans-serif;
+  --font-playfair: Arial, Helvetica, sans-serif;
+  --primary: #003b95;
+  --primary-dark: #002b70;
+  --primary-light: #eaf1fc;
+  --accent: #009da5;
+  --accent-dark: #007880;
   --text: #1c2430;
   --text-muted: #5b6674;
   --bg: #ffffff;
@@ -199,8 +201,9 @@ main {
 }
 
 .logo-img {
-  height: 40px;
-  width: auto;
+  height: 82px;
+  width: 159px;
+  object-fit: contain;
 }
 
 .main-nav {
@@ -400,7 +403,7 @@ main {
 
 /* Hero / sections */
 .hero {
-  background: linear-gradient(135deg, var(--primary-light), #eef7f0);
+  background: linear-gradient(135deg, var(--primary-light), #e4f7f5);
   padding: 70px 0;
 }
 
@@ -1111,11 +1114,11 @@ table.admin-table th {
 }
 
 .badge.pending { background: #fff4d6; color: #9a7300; }
-.badge.confirmed, .badge.processing { background: #e2edff; color: #1a4fa8; }
+.badge.confirmed, .badge.processing { background: #e2edff; color: #003b95; }
 .badge.shipped { background: #e6e0ff; color: #5b3fbf; }
-.badge.delivered, .badge.paid { background: #e7f7ee; color: #21774b; }
+.badge.delivered, .badge.paid { background: #e7f7ee; color: #007880; }
 .badge.cancelled, .badge.failed { background: #fdeaea; color: #b5342f; }
-.badge.admin { background: #e2edff; color: #1a4fa8; }
+.badge.admin { background: #e2edff; color: #003b95; }
 .badge.user { background: var(--bg-soft); color: var(--text-muted); }
 
 @media (max-width: 800px) {
@@ -1162,3 +1165,6 @@ table.admin-table th {
 
 .mt-2 { margin-top: 16px; }
 .mb-2 { margin-bottom: 16px; }
+
+.hero-brand { width: min(100%, 440px); height: auto; }
+.hero-eyebrow { color: var(--accent-dark); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; }
