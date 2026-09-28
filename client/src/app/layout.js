@@ -2,6 +2,7 @@ import { brand } from '@/lib/brand';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css';
+import './refresh.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { CartProvider } from '@/context/CartContext';
 import Header from '@/components/layout/Header';
@@ -49,8 +50,10 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider>
           <CartProvider>
+            <a className="skip-link" href="#main-content">Skip to content</a>
+            <div className="announcement">Care for every tomorrow <span>·</span> Medicines, wellness &amp; skincare</div>
             <Header />
-            <main>{children}</main>
+            <main id="main-content">{children}</main>
             <Footer />
             <ToastContainer position="bottom-right" autoClose={2500} hideProgressBar={false} closeOnClick pauseOnHover theme="colored" />
           </CartProvider>

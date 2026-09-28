@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-col">
           <div className="logo footer-logo">
-            <Image src="/logo.png" alt="AuraMed Pharma" width={240} height={120} className="logo-img footer-logo-img" />
+            <Image src="/logo.png" alt="AuraMed Pharma" width={677} height={369} className="logo-img footer-logo-img" />
           </div>
           <p>Pakistan&apos;s trusted online pharmacy — quality medicines, supplements and skincare delivered to your door.</p>
         </div>

@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { FiTruck, FiShield, FiHeadphones } from 'react-icons/fi';
+import { FiTruck, FiShield, FiHeadphones, FiArrowUpRight } from 'react-icons/fi';
 import api from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
+import HeroSlider from '@/components/HeroSlider';
 
 export default function HomeClient() {
   const [categories, setCategories] = useState([]);
@@ -39,31 +39,17 @@ export default function HomeClient() {
 
   return (
     <>
-      <section className="hero">
-        <div className="container hero-inner">
-          <div className="hero-content">
-            <div className="hero-eyebrow">AuraMed Pharma</div>
-            <h1>Care for every tomorrow.</h1>
-            <p>
-              Pakistan&apos;s trusted online pharmacy. Genuine medicines, supplements and skincare,
-              delivered right to your door across Pakistan.
-            </p>
-            <div className="hero-actions">
-              <Link href="/shop" className="btn btn-primary">Shop Now</Link>
-              <Link href="/about" className="btn btn-outline">Learn More</Link>
-            </div>
-          </div>
-          <div className="hero-visual"><Image src="/logo.png" alt="AuraMed Healthcare" width={695} height={359} className="hero-brand" priority /></div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <section className="section container">
         <div className="section-header">
-          <h2>Shop by Category</h2>
+          <span className="eyebrow">FIND YOUR EVERYDAY ESSENTIALS</span><h2>Care, in every category.</h2>
           <p>Explore our range of pharmaceutical and wellness products.</p>
         </div>
         {loading ? (
           <div className="state-box"><div className="spinner" /></div>
+        ) : error || categories.length === 0 ? (
+          <div className="state-box"><p>{error ? "Categories are temporarily unavailable." : "Our collection is growing. Explore the shop for available products."}</p><Link href="/shop" className="btn btn-outline">Explore the shop</Link></div>
         ) : (
           <div className="category-grid">
             {categories.map((cat) => (
@@ -82,7 +68,7 @@ export default function HomeClient() {
 
       <section className="section container">
         <div className="section-header">
-          <h2>Featured Products</h2>
+          <span className="eyebrow">THE AURAMED EDIT</span><h2>Make room for feeling good.</h2>
           <p>Handpicked essentials trusted by our customers.</p>
         </div>
         {loading ? (
@@ -102,7 +88,11 @@ export default function HomeClient() {
         )}
       </section>
 
-      <section className="section" style={{ background: 'var(--bg-soft)' }}>
+      <section className="container editorial-banner">
+        <div><span className="eyebrow">HERE FOR YOUR EVERYDAY</span><h2>Your wellbeing.<br />Our reason why.</h2><p>From the essentials you rely on to the routines you love.</p></div>
+        <Link href="/contact" className="btn btn-outline">Let’s talk care <FiArrowUpRight /></Link>
+      </section>
+      <section className="section service-strip">
         <div className="container category-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
           <div className="text-center">
             <FiTruck size={30} color="var(--primary)" />

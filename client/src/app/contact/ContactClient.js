@@ -38,7 +38,7 @@ export default function ContactClient() {
       </div>
 
       <div className="container">
-        <div className="section" style={{ paddingTop: 0, display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 40 }}>
+        <div className="section contact-layout">
           <div>
             <h2>Get in Touch</h2>
             <ul className="footer-contact" style={{ color: 'var(--text)', marginTop: 20 }}>
@@ -48,7 +48,7 @@ export default function ContactClient() {
             </ul>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="name">Name</label>

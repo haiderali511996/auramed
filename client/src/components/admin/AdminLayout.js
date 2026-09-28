@@ -11,13 +11,13 @@ export default function AdminLayout({ tab, onTabChange, children }) {
   return (
     <div className="admin-layout">
       <aside className="admin-sidebar">
-        <h3>Admin Panel</h3>
+        <h3>AuraMed workspace</h3>
         {tabs.map((t) => (
           <button
             key={t.key}
             className={`admin-nav-link ${tab === t.key ? 'active' : ''}`}
             onClick={() => onTabChange(t.key)}
-            style={{ border: 'none', background: 'none', width: '100%', textAlign: 'left', cursor: 'pointer' }}
+            aria-pressed={tab === t.key}
           >
             {t.label}
           </button>
