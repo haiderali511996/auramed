@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer');
 
+const senderEmail = process.env.EMAIL_FROM || process.env.EMAIL_USER;
+
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.EMAIL_PORT) || 587,
@@ -14,7 +16,7 @@ const transporter = nodemailer.createTransport({
 const sendVerificationEmail = async (email, name, token) => {
   const verifyUrl = `${process.env.CLIENT_URL || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/verify-email?token=${token}`;
   await transporter.sendMail({
-    from: `"AuraMed Pharma" <${process.env.EMAIL_USER}>`,
+    from: `"AuraMed Pharma" <${senderEmail}>`,
     to: email,
     subject: 'Verify Your Email — AuraMed Pharma',
     html: `
@@ -63,7 +65,7 @@ const sendOrderNotification = async (order) => {
   }[order.paymentMethod] || order.paymentMethod;
 
   await transporter.sendMail({
-    from: `"AuraMed Orders" <${process.env.EMAIL_USER}>`,
+    from: `"AuraMed Orders" <${senderEmail}>`,
     to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
     subject: `🛒 New Order #${order.orderNumber} — PKR ${order.total.toLocaleString()}`,
     html: `
@@ -111,7 +113,7 @@ const sendOrderNotification = async (order) => {
 // ✅ Fixed: uses order.customer.name instead of firstName
 const sendOrderConfirmation = async (order) => {
   await transporter.sendMail({
-    from: `"AuraMed Pharma" <${process.env.EMAIL_USER}>`,
+    from: `"AuraMed Pharma" <${senderEmail}>`,
     to: order.customer.email,
     subject: `Order Confirmed #${order.orderNumber} — AuraMed Pharma`,
     html: `
